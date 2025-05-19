@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'educacional_db',
         'USER': 'root',
-        'PASSWORD': '123',
+        'PASSWORD': 'SENAI',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

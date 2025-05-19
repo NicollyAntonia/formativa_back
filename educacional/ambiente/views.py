@@ -12,10 +12,6 @@ from .serializers import (
 )
 from .permissions import IsGestor
 
-# =========================
-# 🔐 Registro e Login JWT
-# =========================
-
 class RegistroUsuarioView(APIView):
     def post(self, request):
         serializer = UsuarioSerializer(data=request.data)
@@ -43,9 +39,6 @@ class LoginUsuarioView(APIView):
         return Response({'detail': 'Credenciais inválidas.'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
-# ===============================
-# 👨‍🏫 CRUD de Professores (Gestores)
-# ===============================
 
 class ProfessorCreateView(generics.CreateAPIView):
     queryset = Professor.objects.all()
@@ -68,9 +61,7 @@ class ProfessorDeleteView(generics.DestroyAPIView):
     permission_classes = [IsGestor]
 
 
-# ===============================
-# 📘 CRUD de Disciplinas (Gestores)
-# ===============================
+
 
 class DisciplinaCRUDView(generics.ListCreateAPIView):
     queryset = Disciplina.objects.all()
@@ -78,9 +69,6 @@ class DisciplinaCRUDView(generics.ListCreateAPIView):
     permission_classes = [IsGestor]
 
 
-# ===============================
-# 🏫 CRUD de Reservas (Gestores)
-# ===============================
 
 class ReservaAmbienteCRUDView(generics.ListCreateAPIView):
     queryset = ReservaAmbiente.objects.all()
@@ -88,9 +76,6 @@ class ReservaAmbienteCRUDView(generics.ListCreateAPIView):
     permission_classes = [IsGestor]
 
 
-# ===============================
-# 📚 Visualização para Professores
-# ===============================
 
 class MinhasDisciplinasView(generics.ListAPIView):
     serializer_class = DisciplinaSerializer
