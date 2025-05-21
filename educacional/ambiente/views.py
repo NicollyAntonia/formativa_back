@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-
+from rest_framework.permissions import AllowAny
 from .models import Usuario, Professor, Disciplina, ReservaAmbiente
 from .serializers import (
     UsuarioSerializer, ProfessorSerializer,
@@ -13,6 +13,7 @@ from .serializers import (
 from .permissions import IsGestor
 
 class RegistroUsuarioView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         serializer = UsuarioSerializer(data=request.data)
         if serializer.is_valid():
@@ -26,6 +27,7 @@ class RegistroUsuarioView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginUsuarioView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
